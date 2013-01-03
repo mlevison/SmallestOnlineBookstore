@@ -8,16 +8,18 @@ import org.junit.*;
 
 public class SelectBookTest {
 
+	private static final String GREAT_BOOK = "Great Book";
+
 	@Test
 	public void SelectOneBookForPurchase() {
 		ShoppingCart shoppingCart = new ShoppingCart();
 
-		shoppingCart.selectBook("Great Book");
+		shoppingCart.selectBook(GREAT_BOOK);
 		List<Book> bookList = shoppingCart.getBooks();
 
 		assertNotNull(bookList);
 		assertEquals(1, bookList.size());
-		assertEquals("Great Book", bookList.get(0).getTitle());
+		assertEquals(GREAT_BOOK, bookList.get(0).getTitle());
 	}
 
 }
