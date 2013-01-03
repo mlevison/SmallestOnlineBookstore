@@ -38,11 +38,6 @@ public class AddressParser {
 		return null;
 	}
 
-	public Object getStreet() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public Object getPostalCode() {
 		return postalCode;
 	}
