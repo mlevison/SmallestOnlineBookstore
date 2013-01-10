@@ -1,6 +1,7 @@
 package com.mlevison.smallestbookstore;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.*;
 
@@ -15,6 +16,25 @@ public class EmailSentWhenBookMovesThroughSystem {
 		assert (0 == bookChangeStateListener.bookAddedCount);
 		shoppingCart.selectBook("Pickwick Papers");
 		assertEquals(1, bookChangeStateListener.bookAddedCount);
+	}
+
+	@Test
+	public void EmailSentWhenBookSelectedUsingMocks() {
+		BookChangeStateListener mockBookChangeStateListener = mock(BookChangeStateListener.class);
+		ShoppingCart shoppingCart = new ShoppingCart();
+		shoppingCart.addBookChangeStateListener(mockBookChangeStateListener);
+
+		shoppingCart.selectBook("Pickwick Papers");
+		verify(mockBookChangeStateListener).BookAddedToShoppingCart(); // open
+																		// to
+																		// all
+																		// calls
+		verify(mockBookChangeStateListener, times(1)).BookAddedToShoppingCart(); // requires
+																					// there
+																					// to
+																					// only
+																					// one
+																					// call
 	}
 
 	@Test

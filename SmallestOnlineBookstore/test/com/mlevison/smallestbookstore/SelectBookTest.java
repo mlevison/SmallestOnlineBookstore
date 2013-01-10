@@ -6,6 +6,8 @@ import java.util.*;
 
 import org.junit.*;
 
+import com.mlevison.supporting.fakebook.*;
+
 public class SelectBookTest {
 
 	private static final String GREAT_BOOK = "Great Book";
