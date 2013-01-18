@@ -1,7 +1,7 @@
 package com.mlevison.supporting.slowcreditcompanies;
 
 public abstract class CreditCardCompany {
-	public final boolean isValid(String card) {
+	public boolean isValid(String card) {
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -12,7 +12,7 @@ public abstract class CreditCardCompany {
 
 	protected abstract boolean isValidImpl(String card);
 
-	public final String processPayment(String card, Double money) {
+	public String processPayment(String card, Double money) {
 		return processPaymentImpl(card, money);
 	}
 

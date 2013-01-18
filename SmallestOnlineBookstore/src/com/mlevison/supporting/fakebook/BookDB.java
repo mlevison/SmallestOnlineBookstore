@@ -26,4 +26,8 @@ public final class BookDB {
 				"Broadway", 12.99, 3, 0.75));
 
 	}
+
+	public static List<Book> getBookList() {
+		return bookList;
+	}
 }
