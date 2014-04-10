@@ -1,28 +1,30 @@
 package com.mlevison.smallestbookstore.fitnessegiftcard;
 
+import com.mlevison.smallestbookstore.*;
+
 public class SendGiftCardFixture {
-	private BuyGiftCardFixture buyGiftCardFixture;
+	private GiftCard giftCard;
 
 	public boolean giftCardHere() {
-		if (buyGiftCardFixture == null) {
+		if (giftCard == null) {
 			return false;
 		}
 		return true;
 	}
 
 	public void buyGiftCard(int value) {
-		buyGiftCardFixture = new BuyGiftCardFixture();
-		buyGiftCardFixture.setAmount(value);
+		giftCard = new GiftCard();
+		giftCard.setAmount(value);
 	}
 
 	public int giftCardBalance() {
-		if (buyGiftCardFixture == null) {
+		if (giftCard == null) {
 			return 0;
 		}
-		return buyGiftCardFixture.currentBalance();
+		return giftCard.currentBalance();
 	}
 
 	public void sendGiftCardTo(String name) {
-		buyGiftCardFixture = null;
+		giftCard = null;
 	}
 }

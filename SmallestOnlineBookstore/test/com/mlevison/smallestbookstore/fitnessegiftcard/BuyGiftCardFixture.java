@@ -1,14 +1,13 @@
 package com.mlevison.smallestbookstore.fitnessegiftcard;
 
+import com.mlevison.smallestbookstore.*;
+
 public class BuyGiftCardFixture {
-	int amount;
+	GiftCard giftCard = new GiftCard();
 	public void setAmount(int newAmount) {
-		if (newAmount < 0) {
-			throw new IllegalArgumentException();
-		}
-		amount = newAmount;
+		giftCard.setAmount(newAmount);
 	}
 	public int currentBalance() {
-		return amount;
+		return giftCard.currentBalance();
 	}
 }
