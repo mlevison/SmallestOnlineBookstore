@@ -3,7 +3,9 @@ package com.mlevison.smallestbookstore;
 import java.util.*;
 
 import com.mlevison.supporting.fakebook.*;
+import com.mlevison.supporting.slowcreditcompanies.*;
 
+// Comment
 public class ShoppingCart {
 	private final List<Book> bookList = new ArrayList<Book>();
 	private final List<BookChangeStateListener> bookChangeStateListenerList = new ArrayList<BookChangeStateListener>();
@@ -25,7 +27,8 @@ public class ShoppingCart {
 		bookChangeStateListenerList.add(bookChangeStateListener);
 	}
 
-	public void payForContents() {
+	public void payForContents(CreditCardCompany creditCardCompany) {
+		creditCardCompany.processPayment("Some Card", 2.0);
 		for (BookChangeStateListener bookChangeStateListener : bookChangeStateListenerList) {
 			bookChangeStateListener.ShoppingCartPaidFor();
 		}

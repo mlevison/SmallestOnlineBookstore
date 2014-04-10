@@ -5,6 +5,8 @@ import static org.mockito.Mockito.*;
 
 import org.junit.*;
 
+import com.mlevison.supporting.slowcreditcompanies.*;
+
 public class EmailSentWhenBookMovesThroughSystem {
 
 	@Test
@@ -16,6 +18,7 @@ public class EmailSentWhenBookMovesThroughSystem {
 		assert (0 == bookChangeStateListener.bookAddedCount);
 		shoppingCart.selectBook("Pickwick Papers");
 		assertEquals(1, bookChangeStateListener.bookAddedCount);
+		assertEquals(0, bookChangeStateListener.shoppingCartPaidFor);
 	}
 
 	@Test
@@ -25,16 +28,9 @@ public class EmailSentWhenBookMovesThroughSystem {
 		shoppingCart.addBookChangeStateListener(mockBookChangeStateListener);
 
 		shoppingCart.selectBook("Pickwick Papers");
-		verify(mockBookChangeStateListener).BookAddedToShoppingCart(); // open
-																		// to
-																		// all
-																		// calls
-		verify(mockBookChangeStateListener, times(1)).BookAddedToShoppingCart(); // requires
-																					// there
-																					// to
-																					// only
-																					// one
-																					// call
+		verify(mockBookChangeStateListener).BookAddedToShoppingCart();
+		verify(mockBookChangeStateListener, times(1)).BookAddedToShoppingCart();
+		verifyNoMoreInteractions(mockBookChangeStateListener);
 	}
 
 	@Test
@@ -51,13 +47,14 @@ public class EmailSentWhenBookMovesThroughSystem {
 
 	@Test
 	public void EmailSentWhenShoppingCartPaidFor() {
+		CreditCardCompany mockedCreditCardCompany = mock(CreditCardCompany.class);
 		LocalBookChangeListener bookChangeStateListener = new LocalBookChangeListener();
 		ShoppingCart shoppingCart = new ShoppingCart();
 		shoppingCart.addBookChangeStateListener(bookChangeStateListener);
 		shoppingCart.selectBook("Pickwick Papers");
 
 		assert (0 == bookChangeStateListener.shoppingCartPaidFor);
-		shoppingCart.payForContents();
+		shoppingCart.payForContents(mockedCreditCardCompany);
 
 		assertEquals(1, bookChangeStateListener.shoppingCartPaidFor);
 	}
@@ -75,6 +72,5 @@ public class EmailSentWhenBookMovesThroughSystem {
 		public void ShoppingCartPaidFor() {
 			shoppingCartPaidFor++;
 		}
-
 	}
 }
