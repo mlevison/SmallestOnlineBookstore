@@ -1,5 +1,6 @@
 package com.mlevison.smallestbookstore;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import org.junit.*;
@@ -15,6 +16,7 @@ public class AddressParserTest {
 				"19 Quaker Ridge Rd.\nBethel CT 06801");
 
 		assertEquals("06801", addressParser.getPostalCode());
+		assertThat(addressParser.getPostalCode().toString(), is("06801"));
 	}
 
 	@Test

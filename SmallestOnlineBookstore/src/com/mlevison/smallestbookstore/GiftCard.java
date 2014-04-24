@@ -1,7 +1,7 @@
 package com.mlevison.smallestbookstore;
 
 public class GiftCard {
-	public int amount;
+	private int amount;
 	public void setAmount(int newAmount) {
 		if (newAmount < 0) {
 			throw new IllegalArgumentException();
@@ -10,5 +10,7 @@ public class GiftCard {
 	}
 	public int currentBalance() {
 		return amount;
+	}
+	public void spend(int transaction) {
 	}
 }
